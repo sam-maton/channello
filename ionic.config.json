@@ -1,0 +1,7 @@
+{
+  "name": "kids-tube",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
