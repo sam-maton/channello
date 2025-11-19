@@ -8,6 +8,10 @@ export const routes: Routes = [
   {
     path: '',
     redirectTo: 'home',
-    pathMatch: 'full',
+    pathMatch: 'full'
+  },
+  {
+    path: 'child/feed',
+    loadComponent: () => import('./pages/child/feed/feed.page').then( m => m.FeedPage)
   },
 ];
