@@ -14,4 +14,8 @@ export const routes: Routes = [
     path: 'child/feed',
     loadComponent: () => import('./pages/child/feed/feed.page').then( m => m.FeedPage)
   },
+  {
+    path: 'video/:id',
+    loadComponent: () => import('./pages/child/video/video.page').then( m => m.VideoPage)
+  },
 ];

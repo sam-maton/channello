@@ -16,7 +16,7 @@ export class YoutubeService {
   constructor(private http: HttpClient) {}
 
   getChannelVideos(channelId: string): Observable<any[]> {
-    const apiString = `https://www.googleapis.com/youtube/v3/search?key=${this.API_KEY}&channelId=${channelId}&part=snippet,id&order=date&maxResults=10`
+    const apiString = `https://www.googleapis.com/youtube/v3/search?key=${this.API_KEY}&channelId=${channelId}&part=snippet,id&order=date&maxResults=10&type=video&videoDuration=medium`
 
     const results = this.http.get<any>(apiString).pipe(
       map(res => res.items || [])
