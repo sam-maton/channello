@@ -4,10 +4,26 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content class="ion-padding" [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Video Feed</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <div class="child-feed">
+    @for (video of videos; track $index) {
+      <div class="child-feed__card-container">
+        <ion-card [button]="true">
+          <img [src]="video.snippet.thumbnails.medium.url" alt="video thumbnail" />
+          <ion-card-header>
+            <ion-card-title>Card Title</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Here's a small text description for the card content. Nothing more, nothing less.
+          </ion-card-content>
+        </ion-card>
+      </div>
+    }
+  </div>
 </ion-content>

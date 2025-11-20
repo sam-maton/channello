@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, forkJoin, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.local';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ export class YoutubeService {
   //API String for channel searching
   // https://www.googleapis.com/youtube/v3/search?key=${this.API_KEY}&q=dog%20training&type=channel&part=snippet,id&maxResults=25
 
-  private API_KEY = 'fail'
+  private API_KEY = environment.youtubeApiKey
 
   constructor(private http: HttpClient) {}
 
