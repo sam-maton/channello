@@ -1,39 +1,40 @@
 export interface YoutubeResponse {
-  kind: string
-  etag: string
-  nextPageToken: string
-  regionCode: string
+  kind: string;
+  etag: string;
+  nextPageToken: string;
+  regionCode: string;
   pageInfo: {
-    totalResults: number
-    resultsPerPage: number
-  }
-  items: Array<YoutubeVideo>
+    totalResults: number;
+    resultsPerPage: number;
+  };
+  items: Array<YoutubeVideo>;
 }
 
 export interface YoutubeVideo {
-  kind: string
-  etag: string
+  kind: string;
+  etag: string;
   id: {
-    kind: string
-    videoId: string
-  }
+    kind: string;
+    videoId: string;
+  };
   snippet: {
-    publishedAt: string
-    channelId: string
-    title: string
-    description: string
+    publishedAt: string;
+    channelId: string;
+    title: string;
+    description: string;
     thumbnails: {
       default: {
-        url: string
-      }
+        url: string;
+      };
       medium: {
-        url: string
-      }
+        url: string;
+      };
       high: {
-        url: string
-      }
-    }
-    channelTitle: string
-    liveBroadcastContent: string
-    publishTime: string
-  }}
+        url: string;
+      };
+    };
+    channelTitle: string;
+    liveBroadcastContent: string;
+    publishTime: string;
+  };
+}

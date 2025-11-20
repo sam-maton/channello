@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
-import {YouTubePlayer} from '@angular/youtube-player';
+import {
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+} from '@ionic/angular/standalone';
+import { YouTubePlayer } from '@angular/youtube-player';
 
 @Component({
   selector: 'app-home',
