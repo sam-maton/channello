@@ -12,7 +12,7 @@
   </ion-header>
 
   <div class="child-feed">
-    @for (video of videos; track $index) {
+    @for (video of videos; track video.id.videoId) {
     <div class="child-feed__card-container">
       <ion-card [button]="true" [routerLink]="`/video/${video.id.videoId}`">
         <img
@@ -28,6 +28,12 @@
         <ion-card-content> {{video.snippet.description}} </ion-card-content>
       </ion-card>
     </div>
+    } @if(error){
+    <ion-text color="danger">
+      <p>Error loading videos. Please try again later.</p>
+    </ion-text>
+    } @if(loading){
+    <ion-spinner name="crescent"></ion-spinner>
     }
   </div>
 </ion-content>

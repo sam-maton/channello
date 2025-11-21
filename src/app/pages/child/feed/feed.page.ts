@@ -12,6 +12,8 @@ import {
   IonCardHeader,
   IonCardTitle,
   IonCardSubtitle,
+  IonText,
+  IonSpinner,
 } from '@ionic/angular/standalone';
 import { YoutubeService } from 'src/app/core/services/youtube/youtube.service';
 import { APPROVED_CHANNELS } from 'src/app/core/data/approved-channels';
@@ -24,6 +26,7 @@ import type { YoutubeVideo } from 'src/app/core/types/youtube.types';
   styleUrls: ['./feed.page.scss'],
   standalone: true,
   imports: [
+    IonSpinner,
     IonContent,
     IonHeader,
     IonTitle,
@@ -31,6 +34,7 @@ import type { YoutubeVideo } from 'src/app/core/types/youtube.types';
     IonCard,
     IonCardContent,
     IonCardHeader,
+    IonText,
     IonCardTitle,
     IonCardSubtitle,
     CommonModule,
@@ -43,17 +47,29 @@ export class FeedPage implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
 
   loading = true;
+  error = false;
   videos: YoutubeVideo[] = [];
 
   ngOnInit() {
+    this.loadVideos();
+  }
+
+  loadVideos() {
     const feedVideos = this.youtubeService.getFeedVideos(APPROVED_CHANNELS);
 
     if (feedVideos) {
-      feedVideos.pipe(takeUntil(this.destroy$)).subscribe((data) => {
-        this.videos = data;
-        this.loading = false;
+      feedVideos.pipe(takeUntil(this.destroy$)).subscribe({
+        next: (data) => {
+          this.videos = data;
+          this.loading = false;
 
-        console.log(this.videos);
+          console.log(this.videos);
+        },
+        error: (err) => {
+          console.error('Error fetching feed videos:', err);
+          this.loading = false;
+          this.error = true;
+        },
       });
     }
   }
