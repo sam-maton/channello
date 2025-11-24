@@ -62,8 +62,6 @@ export class FeedPage implements OnInit, OnDestroy {
         next: (data) => {
           this.videos = data;
           this.loading = false;
-
-          console.log(this.videos);
         },
         error: (err) => {
           console.error('Error fetching feed videos:', err);
