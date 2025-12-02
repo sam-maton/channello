@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, forkJoin, Observable, shareReplay, of } from 'rxjs';
-import { environment } from 'src/environments/environment.local';
+import { environment } from 'src/environments/environment.local.template';
 import type {
   YoutubeResponse,
   YoutubeVideo,
