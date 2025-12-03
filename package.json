@@ -10,7 +10,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "dev": "ionic serve --configuration=local"
+    "dev:frontend": "ionic serve --configuration=local",
+    "dev:api": "cd ./api && npm run start:dev",
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:api\""
   },
   "private": true,
   "dependencies": {
@@ -50,6 +52,7 @@
     "@types/jasmine": "~5.1.0",
     "@typescript-eslint/eslint-plugin": "^8.18.0",
     "@typescript-eslint/parser": "^8.18.0",
+    "concurrently": "^9.2.1",
     "eslint": "^9.16.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsdoc": "^48.2.1",
