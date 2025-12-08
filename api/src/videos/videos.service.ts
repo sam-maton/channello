@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { ConfigService } from '@nestjs/config';
+import { catchError, firstValueFrom } from 'rxjs';
+import { AxiosError } from 'axios';
 
 @Injectable()
 export class VideosService {
@@ -12,11 +14,21 @@ export class VideosService {
     this.apiKey = this.configService.get<string>('YOUTUBE_API_KEY');
   }
 
-  getFeedVideos() {
+  async getChannelVideos(channelId: string) {
     if (!this.apiKey) {
       throw new Error('YOUTUBE_API_KEY is not defined');
     }
 
-    return this.httpService.get('https://jsonplaceholder.typicode.com/todos/1');
+    const url = `https://www.googleapis.com/youtube/v3/search?key=${this.apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=10&type=video&videoDuration=medium`;
+
+    const { data } = await firstValueFrom(
+      this.httpService.get(url).pipe(
+        catchError((error: AxiosError) => {
+          throw new Error(`Failed to fetch videos: ${error.message}`);
+        }),
+      ),
+    );
+
+    return data;
   }
 }
