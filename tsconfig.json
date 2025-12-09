@@ -22,7 +22,8 @@
     "skipLibCheck": true,
     "useDefineForClassFields": false,
     "paths": {
-      "@shared/*": ["shared/*"]
+      "@shared/*": ["shared/*"],
+      "@src/*": ["src/*"]
     }
   },
   "angularCompilerOptions": {

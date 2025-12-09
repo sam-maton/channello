@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, forkJoin, Observable, shareReplay, of } from 'rxjs';
+import { environment } from '@src/environments/environment';
 import type {
   YoutubeResponse,
   YoutubeVideo,
@@ -15,6 +16,7 @@ export class YoutubeService {
   // https://www.googleapis.com/youtube/v3/search?key=${this.API_KEY}&q=dog%20training&type=channel&part=snippet,id&maxResults=25
 
   private CACHE_KEY = 'youtube_video_cache';
+  private API_URL = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -25,7 +27,7 @@ export class YoutubeService {
       return of(cached);
     }
 
-    const videosEndpoint = 'http://localhost:3000/videos/' + channelId;
+    const videosEndpoint = `${this.API_URL}/videos/${channelId}`;
 
     return this.http.get<YoutubeResponse>(videosEndpoint).pipe(
       map((res) => {
